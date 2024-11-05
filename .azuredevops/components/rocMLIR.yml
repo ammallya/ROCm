@@ -68,12 +68,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocr-runtime
     parameters:
       buildType: specific
-      # buildId: 10060
-      # buildId: 10355
-      # buildId: 10645
-      # buildId: 10931
-      # buildId: 11385
-      buildId: 11582
+      buildId: 13356
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     # parameters:
     #   dependencyList: ${{ parameters.rocmDependencies }}
@@ -147,12 +142,7 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocr-runtime
     parameters:
       buildType: specific
-      # buildId: 10060
-      # buildId: 10355
-      # buildId: 10645
-      # buildId: 10931
-      # buildId: 11385
-      buildId: 11582
+      buildId: 13356
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
     # parameters:
     #   dependencyList: ${{ parameters.rocmDependencies }}
