@@ -50,16 +50,36 @@ jobs:
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/checkout.yml
     parameters:
       checkoutRepo: ${{ parameters.checkoutRepo }}
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # clr
     parameters:
-      dependencyList: ${{ parameters.rocmDependencies }}
-      gpuTarget: $(JOB_GPU_TARGET)
-      # CI case: download latest default branch build
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        dependencySource: staging
-      # manual build case: triggered by ROCm/ROCm repo
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        dependencySource: tag-builds
+      buildType: specific
+      buildId: 10352
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocminfo
+    parameters:
+      buildType: specific
+      buildId: 9910
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocprofiler-register
+    parameters:
+      buildType: specific
+      buildId: 7626
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # llvm-project
+    parameters:
+      buildType: specific
+      buildId: 10329
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocr-runtime
+    parameters:
+      buildType: specific
+      buildId: 13358
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    # parameters:
+    #   dependencyList: ${{ parameters.rocmDependencies }}
+    #   gpuTarget: $(JOB_GPU_TARGET)
+    #   # CI case: download latest default branch build
+    #   ${{ if eq(parameters.checkoutRef, 'develop') }}:
+    #     dependencySource: staging
+    #   # manual build case: triggered by ROCm/ROCm repo
+    #   ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+    #     dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -97,18 +117,38 @@ jobs:
       gpuTarget: $(JOB_GPU_TARGET)
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-aqlprofile.yml
     parameters:
-      ${{ if eq(parameters.checkoutRef, '') }}:
+      ${{ if eq(parameters.checkoutRef, 'develop') }}:
         dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
+      ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
         dependencySource: tag-builds
-  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # clr
     parameters:
-      dependencyList: ${{ parameters.rocmTestDependencies }}
-      gpuTarget: $(JOB_GPU_TARGET)
-      ${{ if eq(parameters.checkoutRef, '') }}:
-        dependencySource: staging
-      ${{ elseif ne(parameters.checkoutRef, '') }}:
-        dependencySource: tag-builds
+      buildType: specific
+      buildId: 10352
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocminfo
+    parameters:
+      buildType: specific
+      buildId: 9910
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocprofiler-register
+    parameters:
+      buildType: specific
+      buildId: 7626
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # llvm-project
+    parameters:
+      buildType: specific
+      buildId: 10329
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/local-artifact-download.yml # rocr-runtime
+    parameters:
+      buildType: specific
+      buildId: 13358
+  - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/dependencies-rocm.yml
+    # parameters:
+    #   dependencyList: ${{ parameters.rocmTestDependencies }}
+    #   gpuTarget: $(JOB_GPU_TARGET)
+    #   ${{ if eq(parameters.checkoutRef, 'develop') }}:
+    #     dependencySource: staging
+    #   ${{ elseif ne(parameters.checkoutRef, 'develop') }}:
+    #     dependencySource: tag-builds
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/gpu-diagnostics.yml
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/test.yml
     parameters:
