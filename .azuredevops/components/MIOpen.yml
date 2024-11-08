@@ -80,6 +80,12 @@ jobs:
       # manual build case: triggered by ROCm/ROCm repo
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+  - task: Bash@3
+    displayName: Install dependencies
+    inputs:
+      targetType: inline
+      workingDirectory: $(Build.SourcesDirectory)
+      script: cmake -P install_deps.cmake
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -133,6 +139,12 @@ jobs:
         dependencySource: staging
       ${{ elseif ne(parameters.checkoutRef, '') }}:
         dependencySource: tag-builds
+  - task: Bash@3
+    displayName: Install dependencies
+    inputs:
+      targetType: inline
+      workingDirectory: $(Build.SourcesDirectory)
+      script: cmake -P install_deps.cmake
   - task: CMake@1
     displayName: 'MIOpen Test CMake Flags'
     inputs:
