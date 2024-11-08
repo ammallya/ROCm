@@ -13,6 +13,7 @@ parameters:
     - libstdc++-12-dev
     - ninja-build
     - python3-pip
+    - python3-venv
     - software-properties-common
 - name: pipModules
   type: object
