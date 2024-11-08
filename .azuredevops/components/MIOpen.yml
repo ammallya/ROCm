@@ -89,7 +89,7 @@ jobs:
       script: |
         export CXX=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
         export CC=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
-        sudo cmake -P install_deps.cmake
+        sudo cmake -P install_deps.cmake -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++ -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -151,7 +151,7 @@ jobs:
       script: |
         export CXX=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
         export CC=$(Agent.BuildDirectory)/rocm/llvm/bin/clang
-        sudo cmake -P install_deps.cmake
+        sudo cmake -P install_deps.cmake -DCMAKE_CXX_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang++ -DCMAKE_C_COMPILER=$(Agent.BuildDirectory)/rocm/llvm/bin/amdclang
   - task: CMake@1
     displayName: 'MIOpen Test CMake Flags'
     inputs:
