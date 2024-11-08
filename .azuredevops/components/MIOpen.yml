@@ -87,7 +87,7 @@ jobs:
       targetType: inline
       workingDirectory: $(Build.SourcesDirectory)
       script: |
-        export PATH=$PATH:$(Agent.BuildDirectory)/rocm/llvm/bin
+        export CXX=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
         sudo cmake -P install_deps.cmake
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
@@ -148,7 +148,7 @@ jobs:
       targetType: inline
       workingDirectory: $(Build.SourcesDirectory)
       script: |
-        export PATH=$PATH:$(Agent.BuildDirectory)/rocm/llvm/bin
+        export CXX=$(Agent.BuildDirectory)/rocm/llvm/bin/clang++
         sudo cmake -P install_deps.cmake
   - task: CMake@1
     displayName: 'MIOpen Test CMake Flags'
