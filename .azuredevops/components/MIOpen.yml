@@ -85,7 +85,7 @@ jobs:
     inputs:
       targetType: inline
       workingDirectory: $(Build.SourcesDirectory)
-      script: cmake -P install_deps.cmake
+      script: sudo cmake -P install_deps.cmake
   - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/build-cmake.yml
     parameters:
       extraBuildFlags: >-
@@ -144,7 +144,7 @@ jobs:
     inputs:
       targetType: inline
       workingDirectory: $(Build.SourcesDirectory)
-      script: cmake -P install_deps.cmake
+      script: sudo cmake -P install_deps.cmake
   - task: CMake@1
     displayName: 'MIOpen Test CMake Flags'
     inputs:
