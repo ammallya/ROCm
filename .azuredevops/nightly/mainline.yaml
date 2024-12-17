@@ -9,9 +9,9 @@ schedules:
   always: true
 
 variables:
-  ROCM_VERSION: '6.2.0'
+  ROCM_VERSION: '6.3.0'
   GPU_ARCHS: 'gfx942'
-  DOCKER_IMAGE: 'rocm/rocm-build-ubuntu-24.04:6.2'
+  DOCKER_IMAGE: 'rocm/rocm-build-ubuntu-24.04:6.3'
   BUILD_USER: 'AzDevOps'
 
 pool: rocmci
@@ -50,8 +50,8 @@ jobs:
   - script: |
       mkdir -p ~/WORKSPACE/
       cd ~/WORKSPACE/
-      export ROCM_VERSION=6.2.0
-      ~/bin/repo init https://github.com/ROCm/ROCm.git -b amd-mainline
+      export ROCM_VERSION=6.3.0
+      ~/bin/repo init https://github.com/ROCm/ROCm.git -b roc-6.3.x
       ~/bin/repo sync
     displayName: 'Step 1: Clone source code'
 
