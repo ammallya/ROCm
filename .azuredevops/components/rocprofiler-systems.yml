@@ -48,7 +48,6 @@ parameters:
     - rocm_smi_lib
     - rocminfo
     - ROCR-Runtime
-    - rocprofiler
     - rocprofiler-register
     - rocprofiler-sdk
 
