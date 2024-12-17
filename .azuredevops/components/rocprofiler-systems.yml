@@ -50,7 +50,6 @@ parameters:
     - ROCR-Runtime
     - rocprofiler
     - rocprofiler-register
-    - roctracer
     - rocprofiler-sdk
 
 jobs:
