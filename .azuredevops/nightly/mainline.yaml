@@ -51,7 +51,7 @@ jobs:
       mkdir -p ~/WORKSPACE/
       cd ~/WORKSPACE/
       export ROCM_VERSION=6.3.0
-      ~/bin/repo init https://github.com/ROCm/ROCm.git -b roc-6.3.x
+      ~/bin/repo init -u http://github.com/ROCm/ROCm.git -b roc-6.3.x -m tools/rocm-build/rocm-${ROCM_VERSION}.xml
       ~/bin/repo sync
     displayName: 'Step 1: Clone source code'
 
