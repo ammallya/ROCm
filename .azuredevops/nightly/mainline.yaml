@@ -18,7 +18,7 @@ pool: rocmci
 
 jobs:
 - job: BuildROCm
-  timeoutInMinutes: 600
+  timeoutInMinutes: 2000
   steps:
   - script: |
       sudo apt-get update
