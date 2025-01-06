@@ -35,6 +35,7 @@ release = "6.3.1"
 setting_all_article_info = True
 all_article_info_os = ["linux", "windows"]
 all_article_info_author = ""
+footnote_backrefs = False
 
 # pages with specific settings
 article_pages = [
