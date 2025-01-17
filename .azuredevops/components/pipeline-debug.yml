@@ -135,8 +135,17 @@ jobs:
           "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
           $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
           sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        echo "GROUPS:"
+        groups
+        groups $USER
+        USER=$(whoami)
+        echo "USER: $USER"
+        if ! groups $USER | grep -q '\bdocker\b'; then
+          sudo usermod -aG docker $USER
+        fi
         sudo groupadd docker
         getent group docker
+        newgrp docker
         echo "GROUPS:"
         groups
         groups $USER
