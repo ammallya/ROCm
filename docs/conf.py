@@ -99,12 +99,14 @@ html_context = {}
 if os.environ.get("READTHEDOCS", "") == "True":
     html_context["READTHEDOCS"] = True
 
-html_theme = "rocm_docs_theme"
-# html_theme = "sphinx_rtd_theme"
+# html_theme = "rocm_docs_theme"
+html_theme = "sphinx_rtd_theme"
 html_theme_options = {"flavor": "rocm-docs-home"}
 
-html_static_path = ["sphinx/static/css"]
-html_css_files = ["rocm_custom.css", "rocm_rn.css"]
+html_static_path = ["sphinx/static"]
+html_css_files = ["css/rocm_custom.css", "css/rocm_rn.css"]
+html_js_files = ["js/badge_only.js", "js/theme.js", "js/versions.js_t"]
+
 
 html_title = "ROCm Documentation"
 
