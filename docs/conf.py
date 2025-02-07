@@ -104,8 +104,13 @@ html_theme = "rocm_docs_theme"
 html_theme_options = {"flavor": "rocm-docs-home"}
 
 html_static_path = ["sphinx/static"]
-html_css_files = ["css/rocm_custom.css", "css/rocm_rn.css"]
-html_js_files = ["js/search.js"]
+html_css_files = [
+    "css/rocm_custom.css",
+    "css/rocm_rn.css",
+]
+html_js_files = [
+     ("readthedocs.js", {"defer": "defer"}),
+ ]
 
 
 html_title = "ROCm Documentation"
