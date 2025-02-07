@@ -105,7 +105,7 @@ html_theme_options = {"flavor": "rocm-docs-home"}
 
 html_static_path = ["sphinx/static"]
 html_css_files = ["css/rocm_custom.css", "css/rocm_rn.css"]
-html_js_files = ["js/badge_only.js", "js/theme.js", "js/versions.js_t"]
+html_js_files = ["js/search.js"]
 
 
 html_title = "ROCm Documentation"
