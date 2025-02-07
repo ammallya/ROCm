@@ -109,7 +109,7 @@ html_css_files = [
     "css/rocm_rn.css",
 ]
 html_js_files = [
-     ("readthedocs.js", {"defer": "defer"}),
+     ("search.js", {"defer": "defer"}),
  ]
 
 
