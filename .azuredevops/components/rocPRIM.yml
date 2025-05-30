@@ -90,15 +90,15 @@ parameters:
           - rocPRIM_build_gfx90a
     # rocSOLVER depends on both rocBLAS and rocPRIM
     # for a unified build, rocBLAS will be the one to call rocSOLVER
-    - rocSOLVER:
-      name: rocSOLVER
-      sparseCheckoutDir: projects/rocsolver
-      skipUnifiedBuild: 'true'
-      buildDependsOn:
-        gfx942:
-          - rocPRIM_build_gfx942
-        gfx90a:
-          - rocPRIM_build_gfx90a
+    # - rocSOLVER:
+    #   name: rocSOLVER
+    #   sparseCheckoutDir: projects/rocsolver
+    #   skipUnifiedBuild: 'true'
+    #   buildDependsOn:
+    #     gfx942:
+    #       - rocPRIM_build_gfx942
+    #     gfx90a:
+    #       - rocPRIM_build_gfx90a
 
 stages:
 - ${{ each job in parameters.jobMatrix.buildJobs }}:
