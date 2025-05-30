@@ -72,7 +72,7 @@ parameters:
         target: gfx90a
 
 stages:
-- stage: build stage
+- stage: build_stage
   jobs:
   - ${{ each job in parameters.jobMatrix.buildJobs }}:
     - job: ${{ parameters.componentName }}_build_${{ job.target }}
@@ -124,7 +124,8 @@ stages:
           aptPackages: ${{ parameters.aptPackages }}
           gpuTarget: ${{ job.target }}
 
-- stage: test stage
+- stage: test_stage
+  dependsOn: build_stage
   jobs:
   - ${{ if eq(parameters.unifiedBuild, False) }}:
     - ${{ each job in parameters.jobMatrix.testJobs }}:
