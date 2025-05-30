@@ -72,12 +72,12 @@ parameters:
         target: gfx90a
 
 stages:
-- stage: build_stage
-  jobs:
-  - ${{ each job in parameters.jobMatrix.buildJobs }}:
-    - job: ${{ parameters.componentName }}_build_${{ job.target }}
-      ${{ if parameters.buildDependsOn }}:
-        dependsOn: ${{ parameters.buildDependsOn[job.target] }}
+- ${{ each job in parameters.jobMatrix.buildJobs }}:
+  - stage: ${{ parameters.componentName }}_build_${{ job.target }}
+    ${{ if parameters.buildDependsOn }}:
+      dependsOn: ${{ parameters.buildDependsOn[job.target] }}
+    jobs:
+    - job:
       variables:
       - group: common
       - template: /.azuredevops/variables-global.yml
@@ -124,11 +124,11 @@ stages:
           aptPackages: ${{ parameters.aptPackages }}
           gpuTarget: ${{ job.target }}
 
-- stage: test_stage
-  dependsOn: build_stage
-  jobs:
-  - ${{ if eq(parameters.unifiedBuild, False) }}:
-    - ${{ each job in parameters.jobMatrix.testJobs }}:
+- ${{ if eq(parameters.unifiedBuild, False) }}:
+  - ${{ each job in parameters.jobMatrix.testJobs }}:
+    - stage: ${{ parameters.componentName }}_test_${{ job.target }}
+      dependsOn: ${{ parameters.componentName }}_build_${{ job.target }}
+      jobs:
       - job: ${{ parameters.componentName }}_test_${{ job.target }}
         dependsOn: ${{ parameters.componentName }}_build_${{ job.target }}
         condition:
