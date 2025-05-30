@@ -76,8 +76,10 @@ stages:
   - stage: ${{ parameters.componentName }}_build_${{ job.target }}
     ${{ if parameters.buildDependsOn }}:
       dependsOn: ${{ parameters.buildDependsOn[job.target] }}
+    ${{ else }}:
+      dependsOn: []
     jobs:
-    - job:
+    - job: ${{ parameters.componentName }}_build_${{ job.target }}
       variables:
       - group: common
       - template: /.azuredevops/variables-global.yml
