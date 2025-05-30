@@ -130,7 +130,6 @@ stages:
       dependsOn: ${{ parameters.componentName }}_build_${{ job.target }}
       jobs:
       - job: ${{ parameters.componentName }}_test_${{ job.target }}
-        dependsOn: ${{ parameters.componentName }}_build_${{ job.target }}
         condition:
           and(succeeded(),
             eq(variables['ENABLE_${{ upper(job.target) }}_TESTS'], 'true'),
