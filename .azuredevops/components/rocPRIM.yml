@@ -61,12 +61,12 @@ parameters:
       - { target: gfx942 }
       # - { target: gfx90a }
     testJobs:
-      - { target: gfx942, shard: 0,,3 }
-      - { target: gfx942, shard: 1,,3 }
-      - { target: gfx942, shard: 2,,3 }
-      # - { target: gfx90a, shard: 0,,3 }
-      # - { target: gfx90a, shard: 1,,3 }
-      # - { target: gfx90a, shard: 2,,3 }
+      - { target: gfx942, shard: "0,,3" }
+      - { target: gfx942, shard: "1,,3" }
+      - { target: gfx942, shard: "2,,3" }
+      # - { target: gfx90a, shard: "0,,3" }
+      # - { target: gfx90a, shard: "1,,3" }
+      # - { target: gfx90a, shard: "2,,3" }
 - name: downstreamComponentMatrix
   type: object
   default:
