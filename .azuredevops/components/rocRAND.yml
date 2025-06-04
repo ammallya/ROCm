@@ -37,7 +37,6 @@ parameters:
     - googletest
     - libgtest-dev
     - ninja-build
-    - python3-pip
 - name: rocmDependencies
   type: object
   default:
