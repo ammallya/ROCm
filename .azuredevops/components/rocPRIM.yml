@@ -154,7 +154,7 @@ jobs:
 
 - ${{ if eq(parameters.unifiedBuild, False) }}:
   - ${{ each job in parameters.jobMatrix.testJobs }}:
-    - job: ${{ parameters.componentName }}_test_${{ job.target }}
+    - job: ${{ parameters.componentName }}_test_${{ job.target }}_${{ job.shard}}
       dependsOn: ${{ parameters.componentName }}_build_${{ job.target }}
       condition:
         and(succeeded(),
