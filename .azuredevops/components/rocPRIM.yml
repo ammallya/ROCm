@@ -62,12 +62,12 @@ parameters:
       # - { target: gfx90a }
     testShardCount: 3
     testJobs:
-      - { target: gfx942, shard: "0" }
-      - { target: gfx942, shard: "1" }
-      - { target: gfx942, shard: "2" }
-      # - { target: gfx90a, shard: "0" }
-      # - { target: gfx90a, shard: "1" }
-      # - { target: gfx90a, shard: "2" }
+      - { target: gfx942, shard: 0 }
+      - { target: gfx942, shard: 1 }
+      - { target: gfx942, shard: 2 }
+      # - { target: gfx90a, shard: 0 }
+      # - { target: gfx90a, shard: 1 }
+      # - { target: gfx90a, shard: 2 }
 - name: downstreamComponentMatrix
   type: object
   default:
@@ -192,7 +192,7 @@ jobs:
         parameters:
           componentName: ${{ parameters.componentName }}
           testDir: '$(Agent.BuildDirectory)/rocm/bin/rocprim'
-          extraTestParameters: '-I ${{ job.shard }},,${{ parameters.testShardCount }}'
+          extraTestParameters: '-I ${{ job.shard }},,${{ parameters.jobMatrix.testShardCount }}'
       - template: ${{ variables.CI_TEMPLATE_PATH }}/steps/docker-container.yml
         parameters:
           aptPackages: ${{ parameters.aptPackages }}
